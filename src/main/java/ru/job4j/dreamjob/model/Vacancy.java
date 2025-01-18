@@ -21,6 +21,10 @@ public class Vacancy {
         creationDate = LocalDateTime.now();
     }
 
+    public Vacancy() {
+        creationDate = LocalDateTime.now();
+    }
+
     public int getId() {
         return id;
     }
