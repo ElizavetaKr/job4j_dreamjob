@@ -17,8 +17,8 @@ public class CandidateController {
 
     @GetMapping
     public String getAll(Model model) {
-    model.addAttribute("candidates", candidateService.findAll());
-    return "candidates/list";
+        model.addAttribute("candidates", candidateService.findAll());
+        return "candidates/list";
     }
 
     @GetMapping("/create")
@@ -49,9 +49,8 @@ public class CandidateController {
 
     @GetMapping("/delete/{id}")
     public String delete(Model model, @PathVariable int id) {
-        var deleted = candidateService.findById(id);
-        candidateService.deleteById(id);
-        if (deleted.isEmpty()) {
+        var isDeleted = candidateService.deleteById(id);
+        if (!isDeleted) {
             model.addAttribute("message", "Кандидат с указанным идентификатором не найден");
             return "errors/404";
         }

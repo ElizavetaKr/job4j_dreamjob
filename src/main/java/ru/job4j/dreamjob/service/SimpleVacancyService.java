@@ -13,7 +13,8 @@ public class SimpleVacancyService implements VacancyService {
 
     private final VacancyRepository vacancyRepository = MemoryVacancyRepository.getInstance();
 
-    private SimpleVacancyService() { }
+    private SimpleVacancyService() {
+    }
 
     public static SimpleVacancyService getInstance() {
         return INSTANCE;
@@ -25,8 +26,8 @@ public class SimpleVacancyService implements VacancyService {
     }
 
     @Override
-    public void deleteById(int id) {
-        vacancyRepository.deleteById(id);
+    public boolean deleteById(int id) {
+        return vacancyRepository.deleteById(id);
     }
 
     @Override

@@ -41,7 +41,9 @@ public class VacancyController {
         return "redirect:/vacancies";
     }
 
-    /**извлекает вакансию из репозитория и возвращает на страницу*/
+    /**
+     * извлекает вакансию из репозитория и возвращает на страницу
+     */
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable int id) {
         var vacancyOptional = vacancyService.findById(id);
@@ -53,7 +55,9 @@ public class VacancyController {
         return "vacancies/one";
     }
 
-    /**производит обновление и если оно произошло, то делает перенаправление на страницу со всеми вакансиями*/
+    /**
+     * производит обновление и если оно произошло, то делает перенаправление на страницу со всеми вакансиями
+     */
     @PostMapping("/update")
     public String update(@ModelAttribute Vacancy vacancy, Model model) {
         var isUpdated = vacancyService.update(vacancy);
@@ -64,12 +68,13 @@ public class VacancyController {
         return "redirect:/vacancies";
     }
 
-    /**роизводит удаление и если оно произошло, то делает перенаправление на страницу со всеми вакансиями*/
+    /**
+     * роизводит удаление и если оно произошло, то делает перенаправление на страницу со всеми вакансиями
+     */
     @GetMapping("/delete/{id}")
     public String delete(Model model, @PathVariable int id) {
-        var deleted = vacancyService.findById(id);
-        vacancyService.deleteById(id);
-        if (deleted.isEmpty()) {
+        var isDeleted = vacancyService.deleteById(id);
+        if (!isDeleted) {
             model.addAttribute("message", "Вакансия с указанным идентификатором не найдена");
             return "errors/404";
         }
