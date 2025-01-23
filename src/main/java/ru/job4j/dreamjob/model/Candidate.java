@@ -13,11 +13,14 @@ public class Candidate {
 
     private final LocalDateTime creationDate;
 
-    public Candidate(int id, String name, String description) {
+    private int fileId;
+
+    public Candidate(int id, String name, String description, int fileId) {
         this.id = id;
         this.name = name;
         this.description = description;
         creationDate = LocalDateTime.now();
+        this.fileId = fileId;
     }
 
     public int getId() {
@@ -63,5 +66,13 @@ public class Candidate {
 
     public LocalDateTime getCreationDate() {
         return creationDate;
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 }
