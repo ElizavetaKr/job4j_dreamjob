@@ -1,6 +1,7 @@
 package ru.job4j.dreamjob.model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.Objects;
 
@@ -38,7 +39,7 @@ public class Vacancy {
         this.id = id;
         this.title = title;
         this.description = description;
-        creationDate = LocalDateTime.now();
+        creationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         this.visible = visible;
         this.cityId = cityId;
         this.fileId = fileId;

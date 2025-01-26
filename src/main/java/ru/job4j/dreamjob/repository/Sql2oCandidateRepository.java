@@ -58,7 +58,6 @@ public class Sql2oCandidateRepository implements CandidateRepository {
                     .addParameter("creationDate", candidate.getCreationDate())
                     .addParameter("fileId", candidate.getFileId())
                     .addParameter("id", candidate.getId());
-            ;
             return query.executeUpdate().getResult() > 0;
         }
     }
