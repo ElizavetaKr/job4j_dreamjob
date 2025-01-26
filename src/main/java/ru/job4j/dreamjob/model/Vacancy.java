@@ -1,11 +1,25 @@
 package ru.job4j.dreamjob.model;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Objects;
 
-/** модель, описывающая вакансию*/
+/**
+ * модель, описывающая вакансию
+ */
 
 public class Vacancy {
+
+    /**ключи - это столбцы из БД, а значения - названия полей.*/
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "title", "title",
+            "description", "description",
+            "creation_date", "creationDate",
+            "visible", "visible",
+            "city_id", "cityId",
+            "file_id", "fileId"
+    );
     private int id;
 
     private String title;
