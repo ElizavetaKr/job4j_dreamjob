@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.Properties;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class Sql2oUserRepositoryTest {
@@ -53,10 +54,10 @@ class Sql2oUserRepositoryTest {
 
     @Test
     public void whenSameEmailThenException() {
-        User u = new User(0, "email", "name", "password");
-        sql2oUserRepository.save(u);
-        assertThrows(Sql2oException.class, () -> {
-            sql2oUserRepository.save(u);
-        });
+        User user1 = new User(0, "email", "name", "password");
+        User user2 = new User(0, "email", "name", "password");
+        sql2oUserRepository.save(user1);
+        var result = sql2oUserRepository.save(user2);
+        assertThat(result).isEmpty();
     }
 }
