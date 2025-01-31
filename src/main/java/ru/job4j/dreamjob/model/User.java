@@ -2,12 +2,12 @@ package ru.job4j.dreamjob.model;
 
 import java.util.Objects;
 
-/**модель, описывающая пользователя*/
+/**
+ * модель, описывающая пользователя
+ */
 public class User {
     private int id;
-
     private String email;
-
     private String name;
     private String password;
 
@@ -16,6 +16,9 @@ public class User {
         this.email = email;
         this.name = name;
         this.password = password;
+    }
+
+    public User() {
     }
 
     public int getId() {

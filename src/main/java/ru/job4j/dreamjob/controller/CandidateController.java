@@ -1,12 +1,14 @@
 package ru.job4j.dreamjob.controller;
 
 import com.google.errorprone.annotations.ThreadSafe;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.dreamjob.dto.FileDto;
 import ru.job4j.dreamjob.model.Candidate;
+import ru.job4j.dreamjob.model.User;
 import ru.job4j.dreamjob.service.CandidateService;
 
 @ThreadSafe
@@ -20,14 +22,25 @@ public class CandidateController {
         this.candidateService = candidateService;
     }
 
+    private void addUser(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName("Гость");
+        }
+        model.addAttribute("user", user);
+    }
+
     @GetMapping
-    public String getAll(Model model) {
+    public String getAll(Model model, HttpSession session) {
+        addUser(model, session);
         model.addAttribute("candidates", candidateService.findAll());
         return "candidates/list";
     }
 
-    @GetMapping("/create")
-    public String getCreationPage() {
+    @GetMapping({"/create"})
+    public String getCreationPage(Model model, HttpSession session) {
+        addUser(model, session);
         return "candidates/create";
     }
 
