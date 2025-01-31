@@ -14,13 +14,7 @@ import ru.job4j.dreamjob.model.User;
 @Controller
 public class IndexController {
     @GetMapping({"/", "/index"})
-    public String getIndex(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
+    public String getIndex() {
         return "index";
     }
 }

@@ -22,25 +22,14 @@ public class CandidateController {
         this.candidateService = candidateService;
     }
 
-    private void addUser(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
-    }
-
     @GetMapping
-    public String getAll(Model model, HttpSession session) {
-        addUser(model, session);
+    public String getAll(Model model) {
         model.addAttribute("candidates", candidateService.findAll());
         return "candidates/list";
     }
 
     @GetMapping({"/create"})
-    public String getCreationPage(Model model, HttpSession session) {
-        addUser(model, session);
+    public String getCreationPage(Model model) {
         return "candidates/create";
     }
 
