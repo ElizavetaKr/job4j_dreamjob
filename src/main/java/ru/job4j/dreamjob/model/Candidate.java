@@ -32,6 +32,10 @@ public class Candidate {
         this.fileId = fileId;
     }
 
+    public Candidate() {
+        creationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    }
+
     public int getId() {
         return id;
     }
